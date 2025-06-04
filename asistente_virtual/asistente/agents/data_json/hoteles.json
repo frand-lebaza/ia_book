@@ -1,0 +1,65 @@
+[
+  {
+    "nombre_hotel": "Hotel Neiva Plaza",
+    "direccion": "Calle 10 # 5-45, Neiva",
+    "telefono": "+57 123 4567890",
+    "calificacion": 4.5,
+    "habitaciones": [
+      {
+        "tipo": "Sencilla",
+        "precio_noche": 100000,
+        "disponibilidad": true,
+        "link_habitacion": "https://www.hotelneivaplaza.com/reservas"
+      },
+      {
+        "tipo": "Doble",
+        "precio_noche": 150000,
+        "disponibilidad": true,
+        "link_habitacion": "https://www.hotelneivaplaza.com/reservas"
+      }
+    ],
+    "link_hotel": "https://www.hotelneivaplaza.com/reservas"
+  },
+  {
+    "nombre_hotel": "Hotel Chicalá",
+    "direccion": "Carrera 5 # 12-34, Neiva",
+    "telefono": "+57 321 6543210",
+    "calificacion": 4.2,
+    "habitaciones": [
+      {
+        "tipo": "Sencilla",
+        "precio_noche": 90000,
+        "disponibilidad": true,
+        "link_habitacion": "https://www.hotelchicala.com/reservas"
+      },
+      {
+        "tipo": "Doble",
+        "precio_noche": 130000,
+        "disponibilidad": true,
+        "link_habitacion": "https://www.hotelchicala.com/reservas"
+      }
+    ],
+    "link_hotel": "https://www.hotelchicala.com/reservas"
+  },
+  {
+    "nombre_hotel": "Hotel Boutique Neiva",
+    "direccion": "Avenida Circunvalar # 20-10, Neiva",
+    "telefono": "+57 456 7891234",
+    "calificacion": 4.8,
+    "habitaciones": [
+      {
+        "tipo": "Sencilla",
+        "precio_noche": 120000,
+        "disponibilidad": true,
+        "link_habitacion": "https://www.hotelboutiqueneiva.com/reservas"
+      },
+      {
+        "tipo": "Doble",
+        "precio_noche": 180000,
+        "disponibilidad": true,
+        "link_habitacion": "https://www.hotelboutiqueneiva.com/reservas"
+      }
+    ],
+    "link_hotel": "https://www.hotelboutiqueneiva.com/reservas"
+  }
+]

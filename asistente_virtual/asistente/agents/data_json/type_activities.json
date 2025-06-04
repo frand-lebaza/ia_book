@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Cultural"
+    },
+    {
+        "id": 2,
+        "name": "Gastronómica"
+    },
+    {
+        "id": 3,
+        "name": "Naturaleza y Aventura"
+    },
+    {
+        "id": 4,
+        "name": "Relajación y Bienestar"
+    },
+    {
+        "id": 5,
+        "name": "Ecoturismo"
+    },
+    {
+        "id": 6,
+        "name": "Entretenimiento y Ocio"
+    },
+    {
+        "id": 7,
+        "name": "Educación y Aprendizaje"
+    }
+]

@@ -1,0 +1,78 @@
+[
+    {   
+        "id_type": 1,
+        "tipo_actividad": "Cultural",
+        "variaciones": [
+            "Visitas a museos y galerías de arte",
+            "Recorridos históricos y patrimoniales",
+            "Tours culturales temáticos",
+            "Asistencia a espectáculos tradicionales",
+            "Participación en festivales y eventos culturales"
+        ]
+    },
+    {
+        "id_type": 2,
+        "tipo_actividad": "Gastronómica",
+        "variaciones": [
+            "Rutas y degustaciones gastronómicas",
+            "Clases de cocina local",
+            "Catas de vino, café o bebidas locales",
+            "Visitas a mercados locales y ferias de comida",
+            "Tours de comida callejera"
+        ]
+    },
+    {
+        "id_type": 3,
+        "tipo_actividad": "Naturaleza y Aventura",
+        "variaciones": [
+            "Senderismo y trekking",
+            "Observación de flora y fauna",
+            "Ciclismo de montaña o de ruta",
+            "Deportes acuáticos (rafting, kayak, paddleboard, buceo, snorkel)",
+            "Escalada y rápel",
+            "Campismo y glamping",
+            "Cabalgatas"
+        ]
+    },
+    {
+        "id_type": 4,
+        "tipo_actividad": "Relajación y Bienestar",
+        "variaciones": [
+            "Visitas a spas y centros de bienestar",
+            "Sesiones de yoga o meditación",
+            "Baños termales o aguas curativas",
+            "Retiros de bienestar"
+        ]
+    },
+    {
+        "id_type": 5,
+        "tipo_actividad": "Ecoturismo",
+        "variaciones": [
+            "Visitas a parques nacionales y reservas naturales",
+            "Voluntariado ambiental",
+            "Agroturismo",
+            "Tours de turismo sostenible"
+        ]
+    },
+    {
+        "id_type": 6,
+        "tipo_actividad": "Entretenimiento y Ocio",
+        "variaciones": [
+            "Visitas a parques temáticos o de atracciones",
+            "Actividades nocturnas (bares, discotecas, conciertos)",
+            "Compras en mercados o centros comerciales",
+            "Asistencia a eventos deportivos",
+            "Visitas a zoológicos, acuarios o jardines botánicos"
+        ]
+    },
+    {
+        "id_type": 7,
+        "tipo_actividad": "Educación y Aprendizaje",
+        "variaciones": [
+            "Talleres de artesanía o habilidades locales",
+            "Cursos de idiomas o cultura",
+            "Visitas a universidades o centros de investigación",
+            "Participación en charlas o conferencias"
+        ]
+    }
+]

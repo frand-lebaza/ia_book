@@ -1,0 +1,250 @@
+
+PRESENTACIÓN
+
+Buenas tardes, el doctor zamora se comunica con usted, debido a que realizó una programacion de cirugia
+con el doctor, segun su intervencion el doctor le recomienda ciertas actividades a realizar durante su estadía, quisiera saber si está interesado en conocerlas.
+******************
+SI / NO
+
+SI => para confirmar, numero documento, verificar su identidad y recomendaciones
+
+****************
+API DEMO => por número de documento
+
+{
+
+    "num_document":11,
+    "nombre_completo": "Sonia Pérez",
+    "genero": "Femenino",
+    "intervencion": "Rinoplastia",
+    "incapacidad_total_dias": 0,
+    "incapacidad_parcial_dias": 2,
+    "dieta_especial": False,
+    "proteccion_solar": True,
+    "recomendaciones_doctor": "ee",
+    "nombre_doctor": "Dr. Juan Pérez",
+    "Institucion": "Clínica Estética Huila",
+    "ciudad": "Neiva",
+    "telefono_doctor": "+57 123 4567890",
+    "fecha_intervencion": "2023-10-01",
+
+}
+
+****************************
+Gracias, Sonia, como le gustaría que me dirija hacia usted? señora, señorita, doctora ...
+De acuerdo a las recomendaciones del doctor, usted tendría una estancia de 10 días en la ciudad de neiva, hay distintos hoteles recomendados en la ciudad, ¿le gustaría conocerlos?
+
+API = fecha_inicio + fecha_fin + ciudad
+nombre del hotel + link
+¿Interesado? 
+1. reserva de hotel
+**************
+{
+    [
+        {
+            "nombre_hotel": "Hotel Neiva Plaza",
+            "direccion": "Calle 10 # 5-45, Neiva",
+            "telefono": "+57 123 4567890",
+            "calificacion": 4.5,
+            "habitaciones": [
+                {
+                    "tipo": "Sencilla",
+                    "precio_noche": 100000,
+                    "disponibilidad": True,
+                    "link_habitacion": "https://www.hotelneivaplaza.com/reservas",
+                },
+                {
+                    "tipo": "Doble",
+                    "precio_noche": 150000,
+                    "disponibilidad": True,
+                    "link_habitacion": "https://www.hotelneivaplaza.com/reservas",
+                }
+            ],
+            "link_hotel": "https://www.hotelneivaplaza.com/reservas",
+        },
+        {
+            "nombre_hotel": "Hotel Chicalá",
+            "direccion": "Carrera 5 # 12-34, Neiva",
+            "telefono": "+57 321 6543210",
+            "calificacion": 4.2,
+            "habitaciones": [
+                {
+                    "tipo": "Sencilla",
+                    "precio_noche": 90000,
+                    "disponibilidad": True,
+                    "link_habitacion": "https://www.hotelchicala.com/reservas",
+                },
+                {
+                    "tipo": "Doble",
+                    "precio_noche": 130000,
+                    "disponibilidad": True,
+                    "link_habitacion": "https://www.hotelchicala.com/reservas",
+                }
+            ],
+            "link_hotel": "https://www.hotelchicala.com/reservas",
+        }
+    ]
+}
+
+*************************************
+Está intersado en alguno de los hoteles mencionados? de ser así podemos proceder a realizar la reserva.
+
+Interesado? 
+Reservación
+Correo 
+***************
+///////////////////
+Etsadía entre fechas
+imprimit parámetros
+API DEMO RESERVAS => documento, nombre, correo, rango de fechas => status 200
+*****************
+data = {
+    "num_reserva": 12,
+    "tipo_habitacion": "",
+    "nombre_hotel": ""
+}
+************
+gracias Sonia, reserva en hotel para las fechas -- correctamente
+si /no , re4servar en otro hotel?
+
+Klerk
+*************************************
+
+Recomendaciones del doc => actividades -> 
+
+
+2. ¿desea conocerlas?
+***********************0
+
+listarlo de forma numerada
+actividades = {
+    1: "ruta gastronómica", 2: "museos", 3: "parques", 4: "relajación en spas",
+    "senderismo", "visitas culturales",
+    "actividades al aire libre", "turismo ecológico"
+}
+
+********************
+
+3. ¿Desea programar alguna de estas actividades?
+*********************
+
+¿Programar alguna de actividades?
+¿Cuáles desea?
+**************************
+4. ¿programas días específicos o todos los día de su estadía?
+**************************
+
+lista numerada
+list_Days = {
+    "lunes 23 de mayo", "martes 24 de mayo", "miércoles 25 de mayo",
+}
+
+5. API variaciones_type_activities => 
+
+data = [
+    {
+        "tipo_actividad": "Cultural",
+        "variaciones": [
+            "Visitas a museos",
+            "Recorridos históricos",
+            "Tours culturales"
+        ],
+    },
+    {
+        "tipo_actividad": "Gastronómica",
+        "variaciones": [
+            "Rutas gastronómicas",
+            "Clases de cocina local",
+            "Catas de vino"
+        ],
+    },
+    
+]
+
+
+6. Recomendacion segun el tipo de actividad 
+
+API atividades => lit_tipo_Actividades + fechas
+
+data =[
+    {        
+        "tipo_actividad": "Cultural",
+        "actividades": [
+            {
+                "nombre": "Visita al Parque Arqueológico de San Agustín",
+                "descripcion": "Recorrido por el parque arqueológico más importante de Colombia, con guías especializados.",
+                "precio": 50000,
+                "disponibilidad": True,
+                "link_reserva": "https://www.parquearqueologico.com/reservas",
+                "variacion": "Visitas a museos, Recorridos históricos, Tours culturales"
+                "duracion": "2 horas"
+            },
+            {
+                "nombre": "Tour por el Alto de los Ídolos",
+                "descripcion": "Excursión guiada al Alto de los Ídolos, famoso por sus estatuas precolombinas.",
+                "precio": 60000,
+                "disponibilidad": True,
+                "link_reserva": "https://www.altodelosidolos.com/reservas",
+                "variacion": "Visitas a museos, Recorridos históricos, Tours culturales",
+                "duracion": "3 horas"
+            }
+        ],
+        "fecha": "2023-10-02",
+        "hora": "10:00 AM",
+        "duracion": "2 horas",
+        "link_reserva": "https://www.sanagustinparque.com/reservas"
+    }
+]
+
+7. cronograma de actividades
+max = 4 horas diarias (entre todas)
+presupuesto 
+
+data = [
+    {
+        "fecha": "2023-10-02",
+        "hora_inicio": "10:00 AM",
+        "hora_fin": "12:00 PM",
+        "actividad": "Visita al Parque Arqueológico de San Agustín",
+        "descripcion": "Recorrido por el parque arqueológico más importante de Colombia, con guías especializados.",
+        "precio": 50000,
+        "link_reserva": "https://www.parquearqueologico.com/reservas"
+    },
+    {
+        "fecha": "2023-10-02",
+        "hora_inicio": "2:00 PM",
+        "hora_fin": "4:00 PM",
+        "actividad": "Tour por el Alto de los Ídolos",
+        "descripcion": "Excursión guiada al Alto de los Ídolos, famoso por sus estatuas precolombinas.",
+        "precio": 60000,
+        "link_reserva": "https://www.altodelosidolos.com/reservas"
+    }
+]
+
+8. 
+
+next step: 
+Comodidad -> Empresas de transporte -> restaurantes, sitios de interes
+var fechas -> disponibilidad
+
+empresas = [
+    {
+        "nombre_empresa": "Transporte Huila",
+        "telefono": "+57 123 4567890",
+        "tarifa_diaria": 1212,
+        "link_reserva": "https://www.transportehuila.com/reservas"
+    },
+    {
+        "nombre_empresa": "Viajes Express Huila",
+        "telefono": "+57 321 6543210",
+        "tarifa_diaria": 1212,
+        "link_reserva": "https://www.viajesexpresshuila.com/reservas"
+    }
+]
+
+
+
+
+
+
+

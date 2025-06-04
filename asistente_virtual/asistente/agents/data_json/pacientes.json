@@ -1,0 +1,86 @@
+[
+    {
+      "num_document": 100000001,
+      "nombre_completo": "Sonia Pérez",
+      "genero": "Femenino",
+      "intervencion": "Rinoplastia",
+      "incapacidad_total_dias": 0,
+      "incapacidad_parcial_dias": 4,
+      "dieta_especial": false,
+      "proteccion_solar": true,
+      "recomendaciones_doctor": "No exponerse al sol directamente",
+      "nombre_doctor": "Dr. Juan Pérez",
+      "Institucion": "Clínica Estética Huila",
+      "ciudad": "Neiva",
+      "telefono_doctor": "+57 123 4567890",
+      "fecha_intervencion": "2023-10-01"
+    },
+    {
+      "num_document": 100000002,
+      "nombre_completo": "Carlos Gómez",
+      "genero": "Masculino",
+      "intervencion": "Liposucción",
+      "incapacidad_total_dias": 0,
+      "incapacidad_parcial_dias": 3,
+      "dieta_especial": true,
+      "proteccion_solar": true,
+      "recomendaciones_doctor": "Seguir dieta baja en grasas",
+      "nombre_doctor": "Dra. Ana Torres",
+      "Institucion": "Clínica Belleza Total",
+      "ciudad": "Neiva",
+      "telefono_doctor": "+57 321 6543210",
+      "fecha_intervencion": "2023-10-02"
+    }
+    ,
+    {
+      "num_document": 100000003,
+      "nombre_completo": "María López",
+      "genero": "Femenino",
+      "intervencion": "Aumento de senos",
+      "incapacidad_total_dias": 0,
+      "incapacidad_parcial_dias": 5,
+      "dieta_especial": false,
+      "proteccion_solar": true,
+      "recomendaciones_doctor": "Evitar actividades físicas intensas",
+      "nombre_doctor": "Dr. Luis Martínez",
+      "Institucion": "Clínica Salud y Belleza",
+      "ciudad": "Neiva",
+      "telefono_doctor": "+57 456 7891234",
+      "fecha_intervencion": "2023-10-03"
+    }
+    ,
+    {
+      "num_document": 100000004,
+      "nombre_completo": "Andrés Ramírez",
+      "genero": "Masculino",
+      "intervencion": "Abdominoplastia",
+      "incapacidad_total_dias": 0,
+      "incapacidad_parcial_dias": 7,
+      "dieta_especial": true,
+      "proteccion_solar": true,
+      "recomendaciones_doctor": "Mantener la herida limpia y seca",
+      "nombre_doctor": "Dra. Laura Sánchez",
+      "Institucion": "Clínica Avance Estético",
+      "ciudad": "Neiva",
+      "telefono_doctor": "+57 789 1234567",
+      "fecha_intervencion": "2023-10-04"
+    }
+    ,
+    {
+      "num_document": 100000005,
+      "nombre_completo": "Lucía Torres",
+      "genero": "Femenino",
+      "intervencion": "Blefaroplastia",
+      "incapacidad_total_dias": 8,
+      "incapacidad_parcial_dias": 4,
+      "dieta_especial": false,
+      "proteccion_solar": true,
+      "recomendaciones_doctor": "Usar gafas de sol al salir",
+      "nombre_doctor": "Dr. Carlos Fernández",
+      "Institucion": "Clínica Ojos Brillantes",
+      "ciudad": "Neiva",
+      "telefono_doctor": "+57 234 5678901",
+      "fecha_intervencion": "2023-10-05"
+    }
+  ]
+  
