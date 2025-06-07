@@ -138,9 +138,9 @@ lista numerada
 list_Days = {
     "lunes 23 de mayo", "martes 24 de mayo", "miércoles 25 de mayo",
 }
-
+**************************************
 5. API variaciones_type_activities => 
-
+****************************************
 data = [
     {
         "tipo_actividad": "Cultural",
@@ -160,7 +160,7 @@ data = [
     },
     
 ]
-
+**************************
 
 6. Recomendacion segun el tipo de actividad 
 
@@ -220,7 +220,7 @@ data = [
         "link_reserva": "https://www.altodelosidolos.com/reservas"
     }
 ]
-
+/////////////////////////////////////
 8. 
 
 next step: 

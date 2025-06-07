@@ -1,0 +1,198 @@
+[
+    {
+        "id_type": 1,
+        "tipo_actividad": "Cultural",
+        "actividades": [
+            {
+                "nombre": "Visita al Parque Arqueológico de San Agustín",
+                "descripcion": "Recorrido por el parque arqueológico más importante de Colombia, con guías especializados.",
+                "precio": 50000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.parquearqueologico.com/reservas",
+                "variacion": "Visitas a museos y galerías de arte",
+                "duracion": "2 horas"
+            },
+            {
+                "nombre": "Tour por el Alto de los Ídolos",
+                "descripcion": "Excursión guiada al Alto de los Ídolos, famoso por sus estatuas precolombinas.",
+                "precio": 60000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.altodelosidolos.com/reservas",
+                "variacion": "Recorridos históricos y patrimoniales",
+                "duracion": "3 horas"
+            }
+        ],
+        "fecha": "2023-10-02",
+        "hora": "10:00 AM",
+        "duracion": "2 horas",
+        "link_reserva": "https://www.sanagustinparque.com/reservas"
+    },
+    {
+        "id_type": 2,
+        "tipo_actividad": "Gastronómica",
+        "actividades": [
+            {
+                "nombre": "Tour Gastronómico Neiva",
+                "descripcion": "Degustación de platos típicos en los mejores restaurantes locales.",
+                "precio": 70000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.gastroneiva.com/reservas",
+                "variacion": "Rutas y degustaciones gastronómicas",
+                "duracion": "3 horas"
+            },
+            {
+                "nombre": "Cata de café huilense",
+                "descripcion": "Sesión guiada de cata de café de origen huilense.",
+                "precio": 40000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.catacafehuila.com/reservas",
+                "variacion": "Catas de vino, café o bebidas locales",
+                "duracion": "1.5 horas"
+            }
+        ],
+        "fecha": "2023-10-03",
+        "hora": "2:00 PM",
+        "duracion": "3 horas",
+        "link_reserva": "https://www.gastroneiva.com/reservas"
+    },
+    {
+        "id_type": 3,
+        "tipo_actividad": "Naturaleza y Aventura",
+        "actividades": [
+            {
+                "nombre": "Senderismo en el Cañón del Magdalena",
+                "descripcion": "Caminata ecológica para observar fauna, flora y paisajes del río Magdalena.",
+                "precio": 45000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.senderismomagdalena.com/reservas",
+                "variacion": "Senderismo y trekking",
+                "duracion": "4 horas"
+            },
+            {
+                "nombre": "Kayak en Betania",
+                "descripcion": "Recorrido en kayak por la represa de Betania con guía certificado.",
+                "precio": 50000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.kayakbetania.com/reservas",
+                "variacion": "Deportes acuáticos (rafting, kayak, paddleboard, buceo, snorkel)",
+                "duracion": "2 horas"
+            }
+        ],
+        "fecha": "2023-10-04",
+        "hora": "8:00 AM",
+        "duracion": "4 horas",
+        "link_reserva": "https://www.senderismomagdalena.com/reservas"
+    },
+    {
+        "id_type": 4,
+        "tipo_actividad": "Relajación y Bienestar",
+        "actividades": [
+            {
+                "nombre": "Sesión de Spa y Masajes Neiva Wellness",
+                "descripcion": "Tratamiento relajante con masajes terapéuticos y aromaterapia.",
+                "precio": 90000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.neivawellness.com/reservas",
+                "variacion": "Visitas a spas y centros de bienestar",
+                "duracion": "2 horas"
+            },
+            {
+                "nombre": "Clase de Yoga al Amanecer",
+                "descripcion": "Sesión guiada de yoga y meditación frente al río Magdalena.",
+                "precio": 35000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.yoganeiva.com/reservas",
+                "variacion": "Sesiones de yoga o meditación",
+                "duracion": "1 hora"
+            }
+        ],
+        "fecha": "2023-10-05",
+        "hora": "9:00 AM",
+        "duracion": "2 horas",
+        "link_reserva": "https://www.neivawellness.com/reservas"
+    },
+    {
+        "id_type": 5,
+        "tipo_actividad": "Ecoturismo",
+        "actividades": [
+            {
+                "nombre": "Visita al Parque Natural Cueva de los Guácharos",
+                "descripcion": "Excursión guiada al parque natural más antiguo de Colombia.",
+                "precio": 70000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.cuevadelosguacharos.com/reservas",
+                "variacion": "Visitas a parques nacionales y reservas naturales",
+                "duracion": "6 horas"
+            },
+            {
+                "nombre": "Agroturismo en Finca La Esperanza",
+                "descripcion": "Tour por cafetales y cultivos tradicionales con almuerzo campesino.",
+                "precio": 55000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.fincaesperanza.com/reservas",
+                "variacion": "Agroturismo",
+                "duracion": "4 horas"
+            }
+        ],
+        "fecha": "2023-10-06",
+        "hora": "7:00 AM",
+        "duracion": "6 horas",
+        "link_reserva": "https://www.cuevadelosguacharos.com/reservas"
+    },
+    {
+        "id_type": 6,
+        "tipo_actividad": "Entretenimiento y Ocio",
+        "actividades": [
+            {
+                "nombre": "Concierto Nocturno en Zona Rosa",
+                "descripcion": "Presentación de artistas locales en vivo en el centro de Neiva.",
+                "precio": 45000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.zonarosaneiva.com/reservas",
+                "variacion": "Actividades nocturnas (bares, discotecas, conciertos)",
+                "duracion": "3 horas"
+            },
+            {
+                "nombre": "Visita al Zoológico de San Jorge",
+                "descripcion": "Recorrido familiar por uno de los zoológicos más importantes del Huila.",
+                "precio": 30000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.zoologicosanjorge.com/reservas",
+                "variacion": "Visitas a zoológicos, acuarios o jardines botánicos",
+                "duracion": "2 horas"
+            }
+        ],
+        "fecha": "2023-10-07",
+        "hora": "5:00 PM",
+        "duracion": "3 horas",
+        "link_reserva": "https://www.zonarosaneiva.com/reservas"
+    },
+    {
+        "id_type": 7,
+        "tipo_actividad": "Educación y Aprendizaje",
+        "actividades": [
+            {
+                "nombre": "Taller de Cerámica Artesanal",
+                "descripcion": "Clase práctica de modelado de piezas de barro al estilo huilense.",
+                "precio": 40000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.artesaniasneiva.com/reservas",
+                "variacion": "Talleres de artesanía o habilidades locales",
+                "duracion": "2 horas"
+            },
+            {
+                "nombre": "Charla sobre Cultura Opita",
+                "descripcion": "Conferencia interactiva sobre tradiciones, costumbres y gastronomía local.",
+                "precio": 20000,
+                "disponibilidad": true,
+                "link_reserva": "https://www.culturaopita.com/reservas",
+                "variacion": "Participación en charlas o conferencias",
+                "duracion": "1.5 horas"
+            }
+        ],
+        "fecha": "2023-10-08",
+        "hora": "3:00 PM",
+        "duracion": "2 horas",
+        "link_reserva": "https://www.artesaniasneiva.com/reservas"
+    }
+]

@@ -1,7 +1,7 @@
 from langchain.prompts import SystemMessagePromptTemplate
 
 
-
+# prompt cirujanos
 # Instrucciones para el agente
 system_message = SystemMessagePromptTemplate.from_template(
     # Paso 1: Presentación inicial
@@ -96,5 +96,9 @@ system_message = SystemMessagePromptTemplate.from_template(
     "Si elige programar días específicos, muestra una lista de los días entre la fecha de inicio y fin de la estadía. "
     "Por ejemplo, si la fecha de inicio es 2023-10-02 y la fecha de fin es 2023-10-07, muestra: "
     "Días disponibles:  Lunes 2 de Octubre, Martes 3 de Octubre, Miércoles 4 de Octubre, Jueves 5 de Octubre, Viernes 6 de Octubre, Sábado 7 de Octubre. "
-    
+
+    # paso 19: Mostrar actividades disponibles para esas fechas
+    "Utiliza la herramienta get_activities_available enviando las fechas que el paciente seleccionó y el tipo de actividad."
+    "Por ejemplo: si el tipo de actividad es 2 y las fechas son 2023-10-02 y 2023-10-04, ejecuta así: get_activities_available(type=2, dates='2023-10-02, 2023-10-04'" 
+    "Muestra al paciente las actividades disponibles para esas fechas. "
 )

@@ -1,0 +1,40 @@
+
+
+1. Orientacr IA asesor de agendamiento médico de dolencias 
+*******************
+2. SAludo
+¿cómo puedo ayudarlo? Tiene alguna dolencia, desea programar alguna cita
+*****************
+IA -> VERIFICAR si da sintomas o agendar cita
+*********************
+* Todos las profesiones debemos llenar con observaciones
+*****************
+*SINTOMAS -> sugerir algúna profesi´on
+
+* # Documento -> API -> buscar en base de datos
+    En qué ciudad se encuentra en este momento?
+* Ciudad 
+¿Qué ciudad tiene cobertura?
+
+    API CIUDADES ->  
+    data = [
+        {
+            "nombre" : "Neiva", 
+            "cobertura": {
+                "Baraya", "Rivera", "Gigante", "Neiva"
+            },
+            "default": True                  
+        },
+        {
+            "nombre" : "Pitalito",
+            "cobertura": {
+                "Isnos", "Timaná", "San agustín"
+            },
+            "default": False                    
+        }
+    ]    
+
+escoger la sede
+
+* AGENDAR CITA -> 
+

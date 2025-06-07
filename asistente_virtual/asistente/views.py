@@ -84,7 +84,6 @@ class AgentViewset(viewsets.GenericViewSet):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
 
-
 class AgentDataset(viewsets.GenericViewSet):
     """
     Clase para manejar datos del agente.    
@@ -177,3 +176,112 @@ class AgentDataset(viewsets.GenericViewSet):
         print(f"Actividades encontradas: {activities}")
         
         return Response(activities, status=status.HTTP_200_OK)
+    
+    def get_activities_dates(self, request, type):
+        """
+        Método para obtener actividades disponibles en fechas específicas.
+        """
+
+        data = request.data
+        dates = data.get('dates', [])
+
+        print(f"Tipo de actividad: {type}, Fechas: {dates}")
+        if not type or not dates:
+            return Response({"error": "Faltan datos para obtener actividades."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        file_path = os.path.join(settings.BASE_DIR, 'asistente', 'agents', 'data_json/activities_price.json')
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        
+        activities = [activity for activity in data if activity['id_type'] == type and activity['fecha'] in dates]
+        if not activities:
+            return Response({"error": "No se encontraron actividades disponibles para las fechas especificadas."}, status=status.HTTP_404_NOT_FOUND)
+        
+        return Response(activities, status=status.HTTP_200_OK)
+    
+class AgentPrevired(viewsets.GenericViewSet):
+
+    def get_coberturas(*args, **kwargs):
+        file_path = os.path.join(settings.BASE_DIR, 'asistente', 'agents', 'data_json/cities.json')
+        with open(file_path, 'r') as file:
+            data = json.load(file)                    
+        
+        return Response(data, status=status.HTTP_200_OK)
+    
+class AgentAuxTools(viewsets.GenericViewSet):
+
+    def get_professionals(*args, **kwargs):
+        """ 
+        Obtiene la lista de los profesionales disponibles
+        """
+        api_base = os.getenv("URL_BASE")
+        api_url = f"{api_base}/api/1.0/cda/tecnico/?expand=categoria_tecnicos"
+
+        response = requests.get(api_url)
+        if response.status_code != 200:
+            return {"Error": "No se pudo obtener la lista de profesionales."}
+        data = response.json()
+        if not data:
+            return {"Error": "No hay profesionales disponibles en este momento."}
+        
+        data_professional = data["results"]
+
+        extract_data = [
+            {
+                "id": professional["id"],
+                "nombre_completo": professional["nombre_completo"],
+                "especialidad": professional["categoria_tecnicos"]["name"]                
+            }
+            for professional in data_professional
+        ]                                 
+
+        return Response(extract_data, status=200)
+    
+    def get_services_professional(self, request, id_professional):
+        """
+        Obtiene los servicios disponibles para un profesional específico.        
+        """
+        api_base = os.getenv("URL_BASE")
+        api_url = f"{api_base}/api/1.0/cda/public_list/servicios/0/?tecnico={id_professional}"
+
+        response = requests.get(api_url)
+        if response.status_code != 200:
+            return {"Error": "No se pudo obtener la lista de servicios."}
+        
+        data = response.json()
+        if not data:
+            return {"Error": "No hay servicios disponibles en este momento."}                                                 
+
+        return Response(data, status=200)
+    
+    def get_hours(self, request):
+        """
+        Obtiene las horas disponibles para agendar una cita.
+        """
+        data = request.data
+        startdate = data.get('startdate')
+        tecnico_id = data.get('tecnicos_id')
+        servicio_id = data.get('tipo')
+        print(f"Fecha de inicio: {startdate}")
+        print(f"Técnico ID: {tecnico_id}")
+        print(f"Servicio ID: {servicio_id}")
+        if not all([startdate, tecnico_id, servicio_id]):
+            return Response({"error": "Faltan datos para obtener las horas disponibles."}, status=status.HTTP_400_BAD_REQUEST)
+        api_base = os.getenv("URL_BASE")
+        api_url = f"{api_base}/api/1.0/cda/public-calendar/servicio_dates/"
+        payload = {
+            "startdate": startdate,
+            "tecnicos_id": [tecnico_id],
+            "tipo": [servicio_id]
+        }
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(api_url, json=payload, headers=headers)        
+
+        if response.status_code != 200:
+            return Response({"error": "No se pudo obtener las horas disponibles."}, status=response.status_code)
+        data = response.json()
+        horas = data[0]["horas_disponibles"]
+
+        if not horas:
+            return Response({"error": "No hay horas disponibles en este momento."}, status=status.HTTP_404_NOT_FOUND)
+        return Response(horas, status=status.HTTP_200_OK)

@@ -5,7 +5,9 @@ from langchain.prompts import SystemMessagePromptTemplate, MessagesPlaceholder, 
 from langchain.agents import create_openai_functions_agent, AgentExecutor
 # from .tools_huila import tools
 from .tools_agent import tools
+from .tools_previred import tools_previred
 from .prompt import system_message
+from .prompt_previred import system_message_previred
 
 # instancia del modelo openAI con configuración personalizada
 llm = ChatOpenAI(
@@ -25,7 +27,7 @@ memory = ConversationBufferMemory(
 # Crear el prompt del agente    
 prompt = ChatPromptTemplate.from_messages(
     [
-        system_message, # Mensaje del sistema con instrucciones
+        system_message_previred, # Mensaje del sistema con instrucciones
         MessagesPlaceholder(variable_name="chat_history"), # Historial de conversación 
         MessagesPlaceholder(variable_name="agent_scratchpad"), # Pasos intermedios del agente
         HumanMessagePromptTemplate.from_template("{input}") # Mensaje del usuario con la entrada actual
@@ -34,14 +36,14 @@ prompt = ChatPromptTemplate.from_messages(
 # Crear el agente con Function Calling y herramientas
 agent_ia = create_openai_functions_agent(
     llm=llm, # Modelo de lenguaje utilizado
-    tools=tools, # Herramientas disponibles para el agente
+    tools=tools_previred, # Herramientas disponibles para el agente
     prompt=prompt # Plantilla de prompt donfigurado para el agente
 )
 
 # Inicializar el agente con las herramientas, memoria y gestor de conversación
 agent_executor = AgentExecutor(
     agent=agent_ia, # Agente configurado con las herramientas y prompt
-    tools=tools, # Herramientas disponibles para el agente
+    tools=tools_previred, # Herramientas disponibles para el agente
     memory=memory, # Memoria de conversación para mantener el contexto
     verbose=True, # Habilitar salida detallada para depuración
     max_iterations=3, # Número máximo de iteraciones para el agente

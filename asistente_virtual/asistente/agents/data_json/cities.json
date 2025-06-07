@@ -1,0 +1,33 @@
+[
+    {
+        "sede": "Neiva",
+        "cobertura": [
+            "Baraya",
+            "Rivera",
+            "Gigante",
+            "Neiva"
+        ],
+        "default": true
+    },
+    {
+        "sede": "Pitalito",
+        "cobertura": [
+            "Isnos",
+            "Timaná",
+            "San Agustín",
+            "Pitalito"
+        ],
+        "default": false
+    },
+    {
+        "sede": "Garzón",
+        "cobertura": [
+            "Agrado",
+            "Guadalupe",
+            "Tarqui",
+            "La Jagua",
+            "Garzón"
+        ],
+        "default": false
+    }
+]

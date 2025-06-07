@@ -18,3 +18,11 @@ class BookHotelInput(BaseModel):
 
 class TypeActivitiesInput(BaseModel):
     type: int
+
+class ServicesProfessionalInput(BaseModel):
+    id_professional: int
+
+class HoursInput(BaseModel):
+    id_professional: int
+    date: str
+    id_service: int
