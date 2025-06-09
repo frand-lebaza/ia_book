@@ -34,7 +34,7 @@ SECRET_KEY = "django-insecure-ohnivxy0-%lt&481j9u=9djsg4(sh&u0jy2)21&vt5w495_6h=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0", "5393-179-49-160-29.ngrok-free.app"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0", "0bba-179-49-160-29.ngrok-free.app", "agente.k-lender.app"]
 
 
 # Application definition
