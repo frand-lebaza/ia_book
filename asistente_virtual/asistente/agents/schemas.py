@@ -26,3 +26,17 @@ class HoursInput(BaseModel):
     id_professional: int
     date: str
     id_service: int
+
+class DataServiceInput(BaseModel):    
+    data: str
+
+class AppointmentDataInput(BaseModel):
+    nombre: str
+    apellido: str
+    documento: str
+    telefono: str
+    email: str
+    fecha_cita: str
+    hora_cita: str
+    servicio: dict
+    profesional: dict

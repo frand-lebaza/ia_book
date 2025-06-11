@@ -4,21 +4,12 @@ from langchain.memory import ConversationBufferMemory, SimpleMemory, CombinedMem
 from langchain_redis import RedisChatMessageHistory
 from langchain.prompts import SystemMessagePromptTemplate, MessagesPlaceholder, HumanMessagePromptTemplate, ChatPromptTemplate
 from langchain.agents import create_openai_functions_agent, AgentExecutor
-# from .tools_huila import tools
+from .llm_config import llm
 from .tools_agent import tools
 from .tools_previred import tools_previred
 from .prompt import system_message
 from .prompt_previred import system_message_previred
 from redis import Redis
-
-# instancia del modelo openAI con configuración personalizada
-llm = ChatOpenAI(
-    model="gpt-4o",
-    temperature=0.7,
-    max_tokens=300, # Limitar tokens de salida para evitar respuestas demasiado largas
-    streaming=True, # Habilitar streaming para respuestas más rápidas
-    openai_api_key=os.getenv("OPENAI_API_KEY")
-)
 
 redis_client = Redis.from_url(os.getenv("REDIS_URL"))
 

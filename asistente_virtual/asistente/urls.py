@@ -22,5 +22,8 @@ urlpatterns = [
     path('professionals/', AgentAuxTools.as_view({'get': 'get_professionals'}), name='get_professionals'),
     path('services/<int:id_professional>/', AgentAuxTools.as_view({'get': 'get_services_professional'}), name='get_services_professional'),
     path('get-hours/', AgentAuxTools.as_view({'post': 'get_hours'}), name='get_hours'),
+    path('get-all-services/', AgentAuxTools.as_view({'get': 'get_all_services'}), name='get_all_services'),
+    path('post-cita/', AgentAuxTools.as_view({'post': 'post_appointment'}), name='post_appointment'),
+    path('service/', AgentAuxTools.as_view({'post': 'get_service_id'}), name='get_service_id'),
 
 ]

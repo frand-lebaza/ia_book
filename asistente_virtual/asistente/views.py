@@ -7,6 +7,7 @@ import json, os, requests
 from langchain_core.messages import HumanMessage
 from django.http.response import JsonResponse
 from django.conf import settings
+from datetime import datetime
 
 class AgentViewset(viewsets.GenericViewSet):
     def post(self, request):
@@ -236,10 +237,10 @@ class AgentAuxTools(viewsets.GenericViewSet):
             {
                 "id": professional["id"],
                 "nombre_completo": professional["nombre_completo"],
-                "especialidad": professional["categoria_tecnicos"]["name"]                
+                "especialidad": professional["categoria_tecnicos"]["name"]            
             }
             for professional in data_professional
-        ]                                 
+        ]
 
         return Response(extract_data, status=200)
     
@@ -259,6 +260,43 @@ class AgentAuxTools(viewsets.GenericViewSet):
             return {"Error": "No hay servicios disponibles en este momento."}                                                 
 
         return Response(data, status=200)
+
+    def get_all_services(*args, **kwargs):
+        api_base = os.getenv("URL_BASE")
+        endpoint = f"{api_base}/api/1.0/cda/public_list/servicios/0/?detailed=true&pagination=none&linea=-1&tecnico=0"
+
+        response = requests.get(endpoint)
+        data = response.json()
+
+        list_services = [
+            {"id": service["id"], "nombre": service["nombre"]}
+            for service in data
+        ]
+
+        return Response(list_services, status=200)
+
+    def get_service_id(self, request):
+
+        data = request.data
+        id_service = data.get('tipo')
+        api_base = os.getenv("URL_BASE")
+        endpoint = f"{api_base}/api/1.0/cda/public-calendar/servicio_dates/"
+        payload = {
+            "tipo": [id_service]
+        }
+        response = requests.post(endpoint, json=payload)
+        res = response.json()
+        
+        list_services = [
+            {
+                "id": service["id"],
+                "nombre": service["nombre"],
+                "duracion": service["servicio_total_duracion"]
+            }
+            for service in res
+        ]
+
+        return Response(list_services, status=200)
     
     def get_hours(self, request):
         """
@@ -268,6 +306,13 @@ class AgentAuxTools(viewsets.GenericViewSet):
         startdate = data.get('startdate')
         tecnico_id = data.get('tecnicos_id')
         servicio_id = data.get('tipo')
+
+        if startdate:
+            try:
+                startdate = datetime.strptime(startdate, "%Y-%m-%d").strftime("%Y-%m-%dT00:00:00.000Z")
+            except ValueError:
+                return Response({"error": "Formato de fecha incorrecto. Use 'YYYY-MM-DDTHH:MM:SS.ssssssZ'."}, status=status.HTTP_400_BAD_REQUEST)
+
         print(f"Fecha de inicio: {startdate}")
         print(f"Técnico ID: {tecnico_id}")
         print(f"Servicio ID: {servicio_id}")
@@ -291,3 +336,22 @@ class AgentAuxTools(viewsets.GenericViewSet):
         if not horas:
             return Response({"error": "No hay horas disponibles en este momento."}, status=status.HTTP_404_NOT_FOUND)
         return Response(horas, status=status.HTTP_200_OK)
+
+    def post_appointment(self, request):
+        try:
+            datos = request.data
+            print(f"DATA PARA REGISTRAR: {datos}")
+            if not datos:
+                print("Error en register, NO se ha proporcionado data")
+                return ""
+
+            api_base = os.getenv("URL_BASE")
+            endpoint = f"{api_base}/api/1.0/cda/public-calendar/create_public_cita/"
+            print(f"endpoint: {endpoint}")
+            headers = {'Content-Type': 'application/json'}
+            response = requests.post(endpoint, json=datos, headers=headers)
+            print(f"status: {response.status_code}, respuesta: {response.text}")
+            return Response({"message": "Cita procesada correctamente."}, status=status.HTTP_200_OK)
+        except Exception as e:
+            print(f"Error al procesar la cita: {e}")
+            return Response({"error": "Error al procesar la cita."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
