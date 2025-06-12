@@ -25,13 +25,17 @@ class AgentViewset(viewsets.GenericViewSet):
     @action(detail=False, methods=['post'])
     def responder(self, request):
         mensaje = request.data.get('mensaje')
+        thread_id = request.data.get('thread_id')
         # session_id = request.data.get('session_id')
 
         if not mensaje:
             return JsonResponse({'error': 'Falta el mensaje.'}, status=400)
 
+        if not thread_id:
+            return JsonResponse({'error': 'Falta el id de user.'}, status=400)
+
         try:
-            respuesta = responder_ia_langchain(mensaje)
+            respuesta = responder_ia_langchain(mensaje, thread_id)
             return JsonResponse({'respuesta': respuesta}, status=200)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
@@ -44,47 +48,47 @@ class AgentViewset(viewsets.GenericViewSet):
                 return JsonResponse({'error': 'URL de Ngrok no configurada.'}, status=500)
             
             data = json.loads(request.body)
-            print("Datos completos recibidos:", data)
+            # print("Datos completos recibidos:", data)
             message_data = data.get('data', {})
             sender = message_data.get('from', '').replace('@c.us', '')
             # print("Remitente:", sender)
             user_message = message_data.get('body', '')
             # print("Usuario remitente:", user_message)
             
-            # if not user_message:
-            #     return JsonResponse({'error': 'Falta el mensaje.'}, status=400)
+            if not user_message:
+                return JsonResponse({'error': 'Falta el mensaje.'}, status=400)
 
-            # agent_api_url = url_ngrok + 'api/responder-ia/'
-            # payload = {
-            #     'mensaje': user_message,
-            #     'session_id': sender,  # Usar el número de teléfono como ID de sesión
-            #     }
+            agent_api_url = url_ngrok + 'api/responder-ia/'
+            payload = {
+                'mensaje': user_message,
+                'thread_id': sender,  # Usar el número de teléfono como ID de sesión
+                }
             # print("Payload enviado al agente:", payload)
-            # headers = {'Content-Type': 'application/json'}
-            # response = requests.post(agent_api_url, json=payload, headers=headers)
+            headers = {'Content-Type': 'application/json'}
+            response = requests.post(agent_api_url, json=payload, headers=headers)
             # print("Respuesta del agente:", response.json())
             # print("Código de estado de la respuesta del agente:", response.status_code)
 
-            # if response.status_code != 200:
-            #     return JsonResponse({'error': 'Error al procesar el mensaje del agente.'}, status=response.status_code)
+            if response.status_code != 200:
+                return JsonResponse({'error': 'Error al procesar el mensaje del agente.'}, status=response.status_code)
 
-            # response_data = response.json()
-            # botreply = response_data.get('respuesta', '')
+            response_data = response.json()
+            botreply = response_data.get('respuesta', '')
             # print("Respuesta del bot:", botreply)
 
-            # ultramsg_url = os.getenv("URL_ULTRAMSG")
-            # ultramsg_token = os.getenv("ULTRAMSG_TOKEN")
-            # if not ultramsg_url or not ultramsg_token:
-            #     return JsonResponse({'error': 'URL o token de UltraMsg no configurados.'}, status=500)
-            # ultramsg_payload = {
-            #     'token': ultramsg_token,
-            #     'to': sender,
-            #     'body': botreply
-            # }
-            # ultramsg_response = requests.post(ultramsg_url, data=ultramsg_payload)
+            ultramsg_url = os.getenv("URL_ULTRAMSG")
+            ultramsg_token = os.getenv("ULTRAMSG_TOKEN")
+            if not ultramsg_url or not ultramsg_token:
+                return JsonResponse({'error': 'URL o token de UltraMsg no configurados.'}, status=500)
+            ultramsg_payload = {
+                'token': ultramsg_token,
+                'to': sender,
+                'body': botreply
+            }
+            ultramsg_response = requests.post(ultramsg_url, data=ultramsg_payload)
             # print("Respuesta de UltraMsg:", ultramsg_response.json())
-            # if ultramsg_response.status_code != 200:
-            #     return JsonResponse({'error': 'Error al enviar el mensaje a UltraMsg.'}, status=ultramsg_response.status_code)                    
+            if ultramsg_response.status_code != 200:
+                return JsonResponse({'error': 'Error al enviar el mensaje a UltraMsg.'}, status=ultramsg_response.status_code)                    
 
             # return JsonResponse({"to": sender, "body": user_message})
             return JsonResponse({"to": sender, "body": user_message})

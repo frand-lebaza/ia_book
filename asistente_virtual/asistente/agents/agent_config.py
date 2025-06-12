@@ -9,11 +9,40 @@ from .tools_agent import tools
 from .tools_previred import tools_previred
 from .prompt import system_message
 from .prompt_previred import system_message_previred
+from redis import Redis
+
+redis_client = Redis.from_url(os.getenv("REDIS_URL"))
+
+def get_memory(session_id):
+    redis = os.getenv("REDIS_URL")
+    print(f"Conectando a Redis en {redis} con session_id: {session_id}")
+
+    message_history = RedisChatMessageHistory(
+        session_id=session_id, # ID de sesión para identificar la conversación
+        url=redis_client # URL de conexión a Redis
+    )
+    memory = ConversationBufferMemory(
+        memory_key="chat_history", # Clave para almacenar el historial de conversación 
+        chat_memory=message_history, # Historial de mensajes almacenado en Redis
+        return_messages=True # Retornar mensajes completos en lugar de solo texto
+    )
+    return memory
 
 memory = ConversationBufferMemory(
         memory_key="chat_history", # Clave para almacenar el historial de conversación         
         return_messages=True # Retornar mensajes completos en lugar de solo texto
     )
+
+user_memories = {}
+
+def get_or_create_memory(thread_id):
+    if thread_id not in user_memories:
+        user_memories[thread_id] = ConversationBufferMemory(
+            memory_key="chat_history",
+            return_messages=True
+        )
+    return user_memories[thread_id]
+
 # Crear el prompt del agente    
 prompt = ChatPromptTemplate.from_messages(
     [
@@ -31,10 +60,10 @@ agent_ia = create_openai_functions_agent(
 )
 
 # Función para responder a mensajes utilizando el agente configurado
-def responder_ia_langchain(mensaje):
+def responder_ia_langchain(mensaje, thread_id):
     # print(f"Recibiendo mensaje: - {mensaje} - para la sesión: {sessionid}")
     # memory = get_memory(session_id) # Obtener la memoria de conversación para la sesión actual
-
+    memory = get_or_create_memory(thread_id)
     # Inicializar el agente con las herramientas, memoria y gestor de conversación
     agent_executor = AgentExecutor(
         agent=agent_ia, # Agente configurado con las herramientas y prompt

@@ -39,8 +39,23 @@ def get_services(id_professional: int):
     """Obtener servicios de un profesional específico desde una API externa."""
     api_url = f"http://127.0.0.1:8000/api/services/{id_professional}/"
     response = requests.get(api_url)
+
+    # Prompt para identificar el servicio primera vez o de seguimiento
+    prompt = PromptTemplate.from_template(
+        "Tenemos esto: '{api_response}'. Basado en esa información, "
+        "si la especialidad del profesional es 'Medicina general' "
+        "debes mostrar un servicio específico, el cual es 'consulta general'"
+        "Devuelve únicamente ese servicio con su información sin explicaciones"
+        "Si la especialidad del profesional es distinta a 'Medicina general' "
+        "debes buscar dos servicios específicos,los cuales son 'primera vez' y 'seguimieto'"
+        "Devuelve únicamente esos dos servicios con su información."
+    )
+
+    services = llm.invoke(prompt.format(api_response=response.text)).content.strip()
+    print(f"SERVICIOS FILTRADOS: {services}")
+
     if response.status_code == 200:
-        return response.json()
+        return services
     else:
         return {"error": "Error al obtener servicios del profesional"}
 
@@ -66,7 +81,7 @@ def get_service_client(data):
     services = response.json()  # Obtiene la lista de servicios
     service_list = ", ".join([s["nombre"] for s in services])  # Crear lista de nombres
 
-     # Prompt para identificar el servicio correcto
+    # Prompt para identificar el servicio correcto
     prompt = PromptTemplate.from_template(
         "Tenemos esto: '{data}'. Basado en esa información, "
         "determina cuál de los siguientes servicios mencionó: {service_list}. "
@@ -234,7 +249,7 @@ def data_register(
     else:
         return {"error": "Error al registrar la cita"}    
     
-
+    
 # Definir la herramienta para obtener ciudades
 tools_previred = [
     StructuredTool.from_function(
