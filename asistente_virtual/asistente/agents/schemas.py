@@ -38,5 +38,8 @@ class AppointmentDataInput(BaseModel):
     email: str
     fecha_cita: str
     hora_cita: str
-    servicio: dict
-    profesional: dict
+    id_servicio: int
+    nombre_servicio: str
+    id_profesional: int
+    profesional_first_name: str
+    profesional_last_name: str

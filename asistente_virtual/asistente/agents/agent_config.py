@@ -9,24 +9,6 @@ from .tools_agent import tools
 from .tools_previred import tools_previred
 from .prompt import system_message
 from .prompt_previred import system_message_previred
-from redis import Redis
-
-redis_client = Redis.from_url(os.getenv("REDIS_URL"))
-
-def get_memory(session_id):
-    redis = os.getenv("REDIS_URL")
-    print(f"Conectando a Redis en {redis} con session_id: {session_id}")
-
-    message_history = RedisChatMessageHistory(
-        session_id=session_id, # ID de sesión para identificar la conversación
-        url=redis_client # URL de conexión a Redis
-    )
-    memory = ConversationBufferMemory(
-        memory_key="chat_history", # Clave para almacenar el historial de conversación 
-        chat_memory=message_history, # Historial de mensajes almacenado en Redis
-        return_messages=True # Retornar mensajes completos en lugar de solo texto
-    )
-    return memory
 
 memory = ConversationBufferMemory(
         memory_key="chat_history", # Clave para almacenar el historial de conversación         

@@ -1,0 +1,50 @@
+{
+    'cliente': {
+        'Activo': 1, 
+        'ActividadEconomicaId': 496,
+        'MunicipioId': 636, 
+        'DigitoVerificacion': 0, 
+        'Declarante': False, 
+        'Apellido1': 'Lopez', 
+        'Apellido2': '.', 
+        'CorreoElectronico': 
+        'mariaa@gmail.com', 
+        'Direccion': 'Sin dirección', 
+        'Id': 0, 
+        'ListaPrecioId': 0, 
+        'NoEliminado': True, 
+        'Nombre1': 'Maria', 
+        'Nombre2': '.', 
+        'Principal': False, 
+        'RazonSocial': '.', 
+        'RegimenTributarioId': 1, 
+        'ResponsabilidadFiscal': 'O-99', 
+        'Retefuente': False, 
+        'TelefonoFax': 0, 
+        'TelefonoFijo': '0', 
+        'TelefonoMovil': '3216536223', 
+        'UltimaActualizacion': '2020-01-01', 
+        'numeroDocumento': '1004268668', 
+        'personeriaTributariaId': 1, 
+        'tipoDocumentoId': 3
+    }, 
+    'inicio': '2025-06-13T15: 00: 00.000Z', 
+    'fin': '2025-06-13T15: 30: 00.000Z', 
+    'metodo_pago': {
+        'id': 4, 
+        'name': 'Tarjeta débito'
+    }, 
+    'servicio': {
+        'id': 58, 
+        'servicio_nombre': 
+        'Diagnóstico de migrañas', 
+        'servicio_total_duracion': 1800.0
+    }, 
+    'tecnico': {
+        'base_user_id': 0, 
+        'id': 98, 
+        'tecnico_first_name': 'Frand', 
+        'tecnico_last_name': 'Lebaza', 
+        'tecnico_nombre': 'Frand Lebaza'
+    }
+}

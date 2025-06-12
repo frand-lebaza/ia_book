@@ -109,15 +109,11 @@ def json_appointment(*args, **kwargs):
         "email": "",
         "fecha_cita": "",
         "hora_cita": "",
-        "servicio": {
-            "id": 0,
-            "servicio_nombre": "",
-        },
-        "profesional": {
-            "id": 0,
-            "tecnico_first_name": "",
-            "tecnico_last_name": "",
-        }
+        "id_servicio": 0,
+        "nombre_servicio": "",
+        "id_profesional": 0,
+        "profesional_first_name": "",
+        "profesional_last_name": ""
     }
     return data
 
@@ -125,7 +121,7 @@ def build_appointment_payload(agent_json):
 
     print(f"JSON DEL AGENTE: {agent_json}")
     
-    id_service = agent_json['servicio']['id']
+    id_service = agent_json.get("id_servicio")
     api_url = "http://127.0.0.1:8000/api/service/"
     payload = {
         "tipo": id_service
@@ -134,7 +130,7 @@ def build_appointment_payload(agent_json):
     print(f"response: {response}")
     service = response.json()
     print(f"service : {service}")
-    duracion = service[0]["servicio_total_duracion"]
+    duracion = service[0]["duracion"]
     print(f"duracion: {duracion}")
 
     hora_cita = datetime.strptime(agent_json['hora_cita'], "%H:%M")
@@ -173,29 +169,58 @@ def build_appointment_payload(agent_json):
             "personeriaTributariaId": 1,
             "tipoDocumentoId": 3
         },
-        "inicio": f"{agent_json['fecha_cita']}T{hora_inicio.strftime('%H:%M')}.000Z",
-        "fin": f"{agent_json['fecha_cita']}T{hora_fin.strftime('%H:%M')}.000Z",
+        "inicio": f"{agent_json['fecha_cita']}T{hora_inicio.strftime('%H:%M')}:00.000Z",
+        "fin": f"{agent_json['fecha_cita']}T{hora_fin.strftime('%H:%M')}:00.000Z",
         "metodo_pago": {
             "id": 4,
             "name": "Tarjeta débito"
         },
         "servicio": {
-            "id": agent_json['servicio']['id'],
-            "servicio_nombre": agent_json['servicio']['servicio_nombre'],
+            "id": agent_json.get("id_servicio", ""),
+            "servicio_nombre": agent_json.get("nombre_servicio"),
             "servicio_total_duracion": duracion
         },
         "tecnico": {
-            "base_user_id": agent_json['profesional']['id'],
-            "id": agent_json['profesional']['id'],
-            "tecnico_first_name": agent_json['profesional']['tecnico_first_name'],
-            "tecnico_last_name": agent_json['profesional']['tecnico_last_name'],
-            "tecnico_nombre": f"{agent_json['profesional']['tecnico_first_name']} {agent_json['profesional']['tecnico_last_name']}"
+            "base_user_id": 0,
+            "id": agent_json.get("id_profesional", ""),
+            "tecnico_first_name": agent_json.get("profesional_first_name"),
+            "tecnico_id": agent_json.get("id_profesional", ""),
+            "tecnico_last_name": agent_json.get("profesional_last_name"),
+            "tecnico_nombre": f"{agent_json.get("profesional_first_name")} {agent_json.get("profesional_last_name")}"
         }
     }
     return payload
 
 
-def data_register(json_data):
+def data_register(
+        nombre: str,
+        apellido: str,
+        documento: str,
+        telefono: str,
+        email: str,
+        fecha_cita: str,
+        hora_cita: str,
+        id_servicio: int,
+        nombre_servicio: str,
+        id_profesional: int,
+        profesional_first_name: str,
+        profesional_last_name: str
+                ):
+    
+    json_data = {
+        "nombre": nombre,
+        "apellido": apellido,
+        "documento": documento,
+        "telefono": telefono,
+        "email": email,
+        "fecha_cita": fecha_cita,
+        "hora_cita": hora_cita,
+        "id_servicio": id_servicio,
+        "nombre_servicio": nombre_servicio,
+        "id_profesional": id_profesional,
+        "profesional_first_name": profesional_first_name,
+        "profesional_last_name": profesional_last_name
+    }
     print(f"JSON DATA RECIBIDO: {json_data}")    
 
     api_url = f"http://127.0.0.1:8000/api/post-cita/"

@@ -1,0 +1,14 @@
+[console_scripts]
+build-docs=scripts:build_docs
+check-format=scripts:check_format
+check-lint=scripts:check_lint
+check-mypy=scripts:check_mypy
+check-sort-imports=scripts:check_sort_imports
+format=scripts:format
+rvl=redisvl.cli.runner:main
+serve-docs=scripts:serve_docs
+sort-imports=scripts:sort_imports
+test=scripts:test
+test-notebooks=scripts:test_notebooks
+test-verbose=scripts:test_verbose
+
